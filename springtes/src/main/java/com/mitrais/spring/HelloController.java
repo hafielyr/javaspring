@@ -1,5 +1,8 @@
 package com.mitrais.spring;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HelloController {
+	
+	
 	@RequestMapping(value="/hello", method=RequestMethod.POST)
 	@ResponseBody
 	public String hello(
@@ -17,7 +22,7 @@ public class HelloController {
 			){
 		return "Your message "+message;
 	}
-	@RequestMapping("/helloo")
+	@RequestMapping(value="/hello", method=RequestMethod.GET)
 	@ResponseBody
 	public String hello2(
 			 @RequestParam(value = "message", defaultValue = "Hello Spring")
