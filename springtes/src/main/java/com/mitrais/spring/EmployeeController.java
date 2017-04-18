@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,6 +40,22 @@ public class EmployeeController {
 			if(e.getGender().equals(gender)){
 				result.add(e);
 			}
+		}
+		return result;
+	}
+	@RequestMapping(value="/employees/{id}",method=RequestMethod.GET)
+	@ResponseBody
+	public String getEmployee(@PathVariable String id){
+		String result=null;
+		for(Employee e:employee){
+			if(e.ID.equals(id)){
+				result=e.getGender();
+				return result;
+			}
+			
+		}
+		if(result==null){
+			throw new EmployeeNotFoundException();
 		}
 		return result;
 	}

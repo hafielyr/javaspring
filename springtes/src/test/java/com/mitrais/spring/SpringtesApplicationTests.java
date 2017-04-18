@@ -46,5 +46,8 @@ public class SpringtesApplicationTests {
 		String result = "{\"gender\": \"male\",\"ID\": \"1\"}";
 		this.mockMvc2.perform(post("/employees").content("{\"gender\":\"male\",\"ID\":\"1\"}").contentType("application/json")).andExpect(status().isOk());
 	}
-	
+	@Test
+	public void shouldReturnNotFound() throws Exception{
+		this.mockMvc2.perform(get("/employees/3")).andExpect(status().isNotFound());
+	}
 }
